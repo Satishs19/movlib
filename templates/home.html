@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Movlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .jumbotron {
+            background-image: url("../static/poster2.jpg");
+            background-size: cover;
+            padding: 16em;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow-y: scroll;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carli {
+            height: 25em;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Movlib</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
+            aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+            <a href="/" class="btn btn-primary mx-2 my-md-0">Logout</a>
+
+        </div>
+    </nav>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading text-light">Find your favourate movie</h1>
+            <form class="form-inline my-2 my-md-0 justify-content-center" method="post" action="search">
+                <input class="form-control my-2 mx-2" type="text" name="search" placeholder="Search">
+                <button type="submit" class="btn btn-primary my-2 mx-2">Search</button>
+            </form>
+
+        </div>
+    </section>
+
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h3 class="border-bottom border-primary pb-2 mb-2">Your playlist</h3>
+            <div class="row ">
+                {% if plen>0 %}
+                {% for i in range(0, plen) %}
+                <div class="col-md-4 ">
+                    <div class="card carli mb-4 box-shadow">
+                        <div class="card-body">
+                            <h6>{{plist[i]}}</h6>
+                            
+                            <div class="media text-muted pt-2 pb-2 border-bottom border-gray">
+                                {% for j in mlist[i] %}
+                                <img src="{{j[1]}}" class="bd-placeholder-img mr-2 rounded " width="28" height="32"
+                                    alt="image">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">{{j[0]}}</strong>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>   
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+                {% else %}
+                <h5>You don't have any playlist</h5>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- others lists -->
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <h3 class="border-bottom border-primary pb-2 mb-2">Others playlist</h3>
+                <div class="row ">
+                    {% if oplen>0 %}
+                    {% for i in range(0, oplen) %}
+                    <div class="col-md-4 ">
+                        <div class="card carli mb-4 box-shadow">
+                            <div class="card-body">
+                                <h6>{{oplist[i]}}</h6>
+                                
+                                <div class="media text-muted pt-2 pb-2 border-bottom border-gray">
+                                    {% for j in omlist[i] %}
+                                    <img src="{{j[1]}}" class="bd-placeholder-img mr-2 rounded " width="28" height="32"
+                                        alt="image">
+                                    <div class="media-body pb-3 mb-0 small lh-125">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <strong class="text-gray-dark">{{j[0]}}</strong>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>   
+                            </div>
+                        </div>
+    
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h5>There are no public playlist</h5>
+                    {% endif %}
+                </div>
+            </div>
+
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/popper.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/main.js"></script>
+</body>
+
+</html>
